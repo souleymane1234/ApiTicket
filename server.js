@@ -18,7 +18,7 @@ require("./models/Img");
 const requireToken = require("./middleware/requireToken");
 const AuthRoutes = require("./routes/AuthRoutes");
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: "https://defiant-suit-jay.cyclic.cloud/",
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };
