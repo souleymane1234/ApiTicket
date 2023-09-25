@@ -23,9 +23,15 @@ const ticketSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  prix: {
+  prixStandart: {
     type: String,
     required: true,
+  },
+  prixVip: {
+    type: String,
+  },
+  prixVvip: {
+    type: String,
   },
   nomLieu: {
     type: String,
