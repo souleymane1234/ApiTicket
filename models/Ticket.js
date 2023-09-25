@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
-const bcrypt = require('bcryptjs');
+const bcrypt = require("bcryptjs");
 const { isResolvable } = require("@hapi/joi/lib/common");
-
 
 const ticketSchema = new mongoose.Schema({
   nom: {
@@ -10,48 +9,42 @@ const ticketSchema = new mongoose.Schema({
   },
   image: {
     type: String,
-    required: true
+    required: true,
   },
   description: {
     type: String,
-    required: true
+    required: true,
   },
   date: {
     type: String,
-    required: true
+    required: true,
   },
   heure: {
     type: String,
-    required: true
+    required: true,
   },
-  prixStandart: {
+  prix: {
     type: String,
-    required: true
-  },
-  prixVip: {
-    type: String,
-  },
-  prixVvip: {
-    type: String,
+    required: true,
   },
   nomLieu: {
     type: String,
-    required: true
+    required: true,
   },
   descriptionLieu: {
     type: String,
   },
   artisteInviter1: {
-    type: String
+    type: String,
   },
   artisteInviter2: {
-    type: String
+    type: String,
   },
   artisteInviter3: {
-    type: String
+    type: String,
   },
   artisteInviter4: {
-    type: String
+    type: String,
   },
   usersId: {
     type: String,
@@ -62,15 +55,13 @@ const ticketSchema = new mongoose.Schema({
     required: true,
   },
   created_at: {
-  type: Date,
-  default: Date.now
+    type: Date,
+    default: Date.now,
   },
   updated_at: {
-  type: Date,
-  default: Date.now
- }
+    type: Date,
+    default: Date.now,
+  },
 });
-
-
 
 module.exports = mongoose.model("Ticket", ticketSchema);
