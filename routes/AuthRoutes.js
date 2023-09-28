@@ -8,6 +8,7 @@ const Event = mongoose.model("Event");
 const Ticket = mongoose.model("Ticket");
 const Sport = mongoose.model("Sport");
 const Img = mongoose.model("Img");
+const StlEvent = mongoose.model("StlEvent");
 const multer = require("multer");
 
 const storage = multer.diskStorage({
@@ -225,6 +226,27 @@ router.post("/api/createTicket", async (req, res) => {
   }
 });
 
+// create stlEvent API start
+router.post("/api/createStlEvent", async (req, res) => {
+  const { nom, image, depart, arrive, prix, created_at, updated_at } = req.body;
+  try {
+    const stlEvents = new StlEvent({
+      nom,
+      image,
+      depart,
+      arrive,
+      prix,
+      created_at,
+      updated_at,
+    });
+    await stlEvents.save();
+    res.json(stlEvents);
+  } catch (err) {
+    res.status(422).send(err.message);
+  }
+});
+// create stlEvents API end
+
 // GET API
 
 // get all event API start
@@ -238,6 +260,17 @@ router.get("/api/allEvent", (req, res) => {
   });
 });
 // get all event API end
+// get all stlEvents API start
+router.get("/api/allStlEvent", (req, res) => {
+  StlEvent.find({}, (err, data) => {
+    if (!err) {
+      res.send(data);
+    } else {
+      console.log(err);
+    }
+  });
+});
+// get all stlEvents API end
 // get single event API start
 router.get("/api/single/event/:id", (req, res) => {
   Event.findById(req.params.id, (err, data) => {

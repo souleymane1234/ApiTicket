@@ -14,6 +14,7 @@ require("./models/Transport");
 require("./models/User");
 require("./models/UserTicket");
 require("./models/Img");
+require("./models/StlEvent");
 
 const requireToken = require("./middleware/requireToken");
 const AuthRoutes = require("./routes/AuthRoutes");
