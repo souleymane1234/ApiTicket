@@ -228,11 +228,10 @@ router.post("/api/createTicket", async (req, res) => {
 
 // create stlEvent API start
 router.post("/api/createStlEvent", async (req, res) => {
-  const { nom, image, depart, arrive, prix, created_at, updated_at } = req.body;
+  const { nom, depart, arrive, prix, created_at, updated_at } = req.body;
   try {
     const stlEvents = new StlEvent({
       nom,
-      image,
       depart,
       arrive,
       prix,

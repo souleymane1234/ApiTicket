@@ -7,11 +7,6 @@ const stlEventSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  image: {
-    type: String,
-    required: true,
-  },
-
   depart: {
     type: String,
     required: true,
