@@ -9,6 +9,8 @@ const Ticket = mongoose.model("Ticket");
 const Sport = mongoose.model("Sport");
 const Img = mongoose.model("Img");
 const StlEvent = mongoose.model("StlEvent");
+const StlTicket = mongoose.model("StlTicket");
+const RahimoTicket = mongoose.model("RahimoTicket");
 const multer = require("multer");
 
 const storage = multer.diskStorage({
@@ -245,6 +247,59 @@ router.post("/api/createStlEvent", async (req, res) => {
   }
 });
 // create stlEvents API end
+// create StlTicket API start
+router.post("/api/createStlTicket", async (req, res) => {
+  const {
+    nom,
+    depart,
+    arrive,
+    prix,
+    usersId,
+    eventId,
+    created_at,
+    updated_at,
+  } = req.body;
+  try {
+    const stlTickets = new StlTicket({
+      nom,
+      depart,
+      arrive,
+      prix,
+      usersId,
+      eventId,
+      created_at,
+      updated_at,
+    });
+    await stlTickets.save();
+    res.json(stlTickets);
+  } catch (err) {
+    res.status(422).send(err.message);
+  }
+});
+
+// create StlTicket API start
+// create RahimoTicket API start
+router.post("/api/createRahimoTicket", async (req, res) => {
+  const { depart, arrive, date, prix, usersId, created_at, updated_at } =
+    req.body;
+  try {
+    const rahimoTickets = new RahimoTicket({
+      depart,
+      arrive,
+      date,
+      prix,
+      usersId,
+      created_at,
+      updated_at,
+    });
+    await rahimoTickets.save();
+    res.json(rahimoTickets);
+  } catch (err) {
+    res.status(422).send(err.message);
+  }
+});
+
+// create RahimoTicket API start
 
 // GET API
 
@@ -314,6 +369,28 @@ router.get("/api/allTicket", (req, res) => {
   });
 });
 // get all allTicket API end
+// get all rahimoTicket API start
+router.get("/api/rahimoTicket", (req, res) => {
+  RahimoTicket.find({}, (err, data) => {
+    if (!err) {
+      res.send(data);
+    } else {
+      console.log(err);
+    }
+  });
+});
+// get all rahimoTicket API end
+// get all stlTicket API start
+router.get("/api/stlTicket", (req, res) => {
+  StlTicket.find({}, (err, data) => {
+    if (!err) {
+      res.send(data);
+    } else {
+      console.log(err);
+    }
+  });
+});
+// get all stlTicket API end
 
 // PUT API
 // create ticket API end
