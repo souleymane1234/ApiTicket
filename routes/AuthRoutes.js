@@ -12,6 +12,7 @@ const StlEvent = mongoose.model("StlEvent");
 const StlTicket = mongoose.model("StlTicket");
 const RahimoTicket = mongoose.model("RahimoTicket");
 const CinemaEvent = mongoose.model("CinemaEvent");
+const CinemaTicket = mongoose.model("CinemaTicket");
 const multer = require("multer");
 
 const storage = multer.diskStorage({
@@ -264,7 +265,47 @@ router.post("/api/createTicket", async (req, res) => {
     res.status(422).send(err.message);
   }
 });
-
+// create ticket API end
+// create createCinemaTicket API start
+router.post("/api/createCinemaTicket", async (req, res) => {
+  const {
+    nom,
+    image,
+    description,
+    date,
+    heure,
+    prix,
+    nombreTicket,
+    nomLieu,
+    descriptionLieu,
+    usersId,
+    eventId,
+    created_at,
+    updated_at,
+  } = req.body;
+  try {
+    const cinematickets = new CinemaTicket({
+      nom,
+      image,
+      description,
+      date,
+      heure,
+      prix,
+      nombreTicket,
+      nomLieu,
+      descriptionLieu,
+      usersId,
+      eventId,
+      created_at,
+      updated_at,
+    });
+    await cinematickets.save();
+    res.json(cinematickets);
+  } catch (err) {
+    res.status(422).send(err.message);
+  }
+});
+// create createCinemaTicket API end
 // create stlEvent API start
 router.post("/api/createStlEvent", async (req, res) => {
   const { nom, depart, arrive, prix, created_at, updated_at } = req.body;
@@ -426,6 +467,17 @@ router.get("/api/allTicket", (req, res) => {
   });
 });
 // get all allTicket API end
+// get all cinemaTicket API start
+router.get("/api/cinemaTicket", (req, res) => {
+  CinemaTicket.find({}, (err, data) => {
+    if (!err) {
+      res.send(data);
+    } else {
+      console.log(err);
+    }
+  });
+});
+// get all cinemaTicket API end
 // get all rahimoTicket API start
 router.get("/api/rahimoTicket", (req, res) => {
   RahimoTicket.find({}, (err, data) => {

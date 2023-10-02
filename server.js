@@ -18,6 +18,7 @@ require("./models/StlEvent");
 require("./models/StlTicket");
 require("./models/RahimoTicket");
 require("./models/CinemaEvent");
+require("./models/CinemaTicket");
 
 const requireToken = require("./middleware/requireToken");
 const AuthRoutes = require("./routes/AuthRoutes");
