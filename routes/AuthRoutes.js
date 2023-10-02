@@ -11,6 +11,7 @@ const Img = mongoose.model("Img");
 const StlEvent = mongoose.model("StlEvent");
 const StlTicket = mongoose.model("StlTicket");
 const RahimoTicket = mongoose.model("RahimoTicket");
+const CinemaEvent = mongoose.model("CinemaEvent");
 const multer = require("multer");
 
 const storage = multer.diskStorage({
@@ -140,6 +141,42 @@ router.post("/api/createEvent", async (req, res) => {
   }
 });
 // create event API end
+// create cenima API start
+router.post("/api/createCinema", async (req, res) => {
+  const {
+    nom,
+    image,
+    description,
+    date,
+    heure,
+    prix,
+    nombreTicket,
+    nomLieu,
+    descriptionLieu,
+    created_at,
+    updated_at,
+  } = req.body;
+  try {
+    const cinemas = new CinemaEvent({
+      nom,
+      image,
+      description,
+      date,
+      heure,
+      prix,
+      nombreTicket,
+      nomLieu,
+      descriptionLieu,
+      created_at,
+      updated_at,
+    });
+    await cinemas.save();
+    res.json(cinemas);
+  } catch (err) {
+    res.status(422).send(err.message);
+  }
+});
+// create cenima API end
 // create sport API start
 router.post("/api/createSport", async (req, res) => {
   const {
@@ -323,6 +360,17 @@ router.get("/api/allEvent", (req, res) => {
   });
 });
 // get all event API end
+// get all cenima API start
+router.get("/api/allCinema", (req, res) => {
+  CinemaEvent.find({}, (err, data) => {
+    if (!err) {
+      res.send(data);
+    } else {
+      console.log(err);
+    }
+  });
+});
+// get all cenima API end
 // get all stlEvents API start
 router.get("/api/allStlEvent", (req, res) => {
   StlEvent.find({}, (err, data) => {
