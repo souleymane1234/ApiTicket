@@ -280,14 +280,23 @@ router.post("/api/createStlTicket", async (req, res) => {
 // create StlTicket API start
 // create RahimoTicket API start
 router.post("/api/createRahimoTicket", async (req, res) => {
-  const { depart, arrive, date, prix, usersId, created_at, updated_at } =
-    req.body;
+  const {
+    depart,
+    arrive,
+    date,
+    prix,
+    nombreTicket,
+    usersId,
+    created_at,
+    updated_at,
+  } = req.body;
   try {
     const rahimoTickets = new RahimoTicket({
       depart,
       arrive,
       date,
       prix,
+      nombreTicket,
       usersId,
       created_at,
       updated_at,

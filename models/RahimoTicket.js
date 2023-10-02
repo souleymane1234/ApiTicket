@@ -19,6 +19,10 @@ const rahimoTicketSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  nombreTicket: {
+    type: String,
+    required: true,
+  },
   usersId: {
     type: String,
     required: true,
